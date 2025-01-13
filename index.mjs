@@ -8,6 +8,10 @@ dotenv.config();
 //!import conn.mjs so that i can connect to my db
 import db from "./db/conn.mjs";
 
+//*this is the the line
+
+import budgetEntries from "./routes/budget.mjs";
+import goalEntries from "./routes/goal.mjs";
 //? set up port
 const PORT = process.env.PORT || 5022;
 
@@ -21,6 +25,14 @@ app.use(logger("dev"));
 app.get("/", (req, res) => {
   res.send("<h1> Monthly Reset</h1>");
 });
+
+//* this is the plug
+
+app.use("/api/budget", budgetEntries);
+app.use("/api/goal", goalEntries);
+//habits
+//reset
+//user
 
 //? this should have list of the appropriate end point
 app.get("*/", (req, res) => {
