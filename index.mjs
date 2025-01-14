@@ -12,6 +12,8 @@ import db from "./db/conn.mjs";
 
 import budgetEntries from "./routes/budget.mjs";
 import goalEntries from "./routes/goal.mjs";
+import habitEntries from "./routes/habit.mjs";
+import resetEntries from "./routes/reset.mjs";
 //? set up port
 const PORT = process.env.PORT || 5022;
 
@@ -30,8 +32,9 @@ app.get("/", (req, res) => {
 
 app.use("/api/budget", budgetEntries);
 app.use("/api/goal", goalEntries);
-//habits
-//reset
+app.use("/api/habit", habitEntries);
+app.use("/api/reset", resetEntries);
+
 //user
 
 //? this should have list of the appropriate end point

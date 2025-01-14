@@ -19,6 +19,9 @@ const goalSchema = new mongoose.Schema(
       type: String,
       enum: ["Completed", "Pending", "In-progress"],
     },
+    due: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );

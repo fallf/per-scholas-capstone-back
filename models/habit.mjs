@@ -24,17 +24,17 @@ const habitSchema = new mongoose.Schema(
     },
 
     // Reference to the user who owns the habit
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Refers to the User model
-      required: false,
-    },
+    // user: {s
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "User", // Refers to the User model
+    //   required: false,
+    // },
 
     // Optional reference to a goal if the habit relates to a specific goal
-    goal: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Goal", // Refers to the Goal model
-    },
+    // goal: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: "Goal", // Refers to the Goal model
+    // },
 
     // Indicates if the habit is completed
     completed: {
@@ -48,7 +48,7 @@ const habitSchema = new mongoose.Schema(
     },
   },
   {
-    timestamps: true, // Automatically adds createdAt and updatedAt fields
+    timestamps: true,
   }
 );
 

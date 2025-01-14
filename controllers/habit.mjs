@@ -1,49 +1,48 @@
-import Habit from "../controllers/habit.mjs";
+import Habit from "../models/habit.mjs";
 
 async function seed(req, res) {
+  const TODAY = new Date();
   try {
     // Seed data array
     const seedData = [
       {
         name: "Running",
         frequency: "weekly",
-        status: "active", // Fixed the invalid value 'a' to 'active'
-
+        status: "active",
         completed: false,
-        due: new Date("2025-02-01"),
+        due: TODAY,
       },
       {
         name: "Meditation",
         frequency: "daily",
         status: "active",
-
         completed: false,
-        due: new Date("2025-01-15"),
+        due: TODAY,
       },
       {
         name: "Reading",
         frequency: "monthly",
         status: "completed",
-
         completed: true,
-        due: new Date("2025-01-01"),
+        due: TODAY,
       },
     ];
 
-    // Insert seed data into the Habit collection
-    const result = await Habit.insertMany(seedData);
-    console.log("Seed data added successfully:", result);
-
+    await Habit.create(seedData);
     // Respond to the request
-    res
-      .status(201)
-      .json({ message: "Seed data added successfully", data: result });
-  } catch (error) {
-    console.error("Error seeding data:", error);
-
-    // Respond with an error message
-    res.status(500).json({ message: "Error seeding data", error });
+    res.status(200).send({ message: "seed data created successfully!!" });
+  } catch (err) {
+    res.status(400).send(err);
   }
 }
 
-export default seed;
+const getEntries = async (req, res) => {
+  try {
+    const foundEntries = await Habit.find({});
+    res.status(200).json(foundEntries);
+  } catch (err) {
+    res.send(err).status(400);
+  }
+};
+
+export default { seed, getEntries };
