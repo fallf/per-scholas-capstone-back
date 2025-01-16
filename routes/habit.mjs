@@ -1,16 +1,34 @@
 import express from "express";
 const router = express.Router();
 
-import habitContoller from "../controllers/habit.mjs";
+import habitController from "../controllers/habit.mjs"; // Ensure proper import
 
-router.get("/seed", habitContoller.seed);
+// Seed data route
+router.get("/seed", habitController.seed);
 
-router.get("/", habitContoller.getEntries);
+// Get all habit entries route
+router.get("/", habitController.getEntries);
 
-// TODO: POST new goal
-// TODO: get indivifual goal
-// TODO: get based on criteria
-// TODO: edit goal
-// TODO: delete goal
+// Create a new habit route (POST)
+router.post("/", habitController.createHabit);
+
+// Get an individual habit by ID route (GET)
+router.get("/:id", async (req, res) => {
+  try {
+    const habit = await Habit.findById(req.params.id);
+    if (!habit) {
+      return res.status(404).json({ message: "Habit not found" });
+    }
+    res.status(200).json(habit);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+});
+
+// Update a habit by ID route (PUT)
+router.put("/:id", habitController.updateHabit);
+
+// Delete a habit by ID route (DELETE)
+router.delete("/:id", habitController.deleteHabit);
 
 export default router;

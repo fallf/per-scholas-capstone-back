@@ -46,7 +46,7 @@ const getEntries = async (req, res) => {
     const foundEntries = await Budget.find({});
     res.status(200).json(foundEntries);
   } catch (err) {
-    res.semd(err).status(400);
+    res.send(err).status(400);
   }
 };
 

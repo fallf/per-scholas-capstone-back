@@ -8,6 +8,8 @@ dotenv.config();
 //!import conn.mjs so that i can connect to my db
 import db from "./db/conn.mjs";
 
+//? to connect front and back end without issues
+import cors from "cors";
 //*this is the the line
 
 import budgetEntries from "./routes/budget.mjs";
@@ -21,7 +23,9 @@ const PORT = process.env.PORT || 5022;
 const app = express();
 
 //*Middleware
+app.use(cors());
 app.use(logger("dev"));
+app.use(express.json());
 
 //!Routes
 app.get("/", (req, res) => {
