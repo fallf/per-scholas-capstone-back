@@ -40,13 +40,33 @@ export const registerUser = asyncHandler(async (req, res) => {
       throw new Error("Failed to register user");
     }
   } catch (error) {
-    console.error(error); // Log the full error
-    res.status(500).json({ message: error.message }); // Return error message to client
+    console.error(error);
+    res.status(500).json({ message: error.message });
   }
 });
 
 export const loginUser = asyncHandler(async (req, res) => {
-  res.json({ message: "login user" });
+  try {
+    const { email, password } = req.body;
+
+    // check if the user email exists
+    const user = await User.findOne({ email });
+
+    // check if the user exists and if password matches
+    if (user && (await bcrypt.compare(password, user.password))) {
+      res.json({
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+      });
+    } else {
+      res.status(400);
+      throw new Error("Invalid credentials");
+    }
+  } catch (error) {
+    // Send error response if any issue occurs
+    res.status(500).json({ message: error.message });
+  }
 });
 
 export const getMe = asyncHandler(async (req, res) => {
