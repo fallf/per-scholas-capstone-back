@@ -27,7 +27,7 @@ const app = express();
 app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 //!Routes
 app.get("/", (req, res) => {
   res.send("<h1> Monthly Reset</h1>");
