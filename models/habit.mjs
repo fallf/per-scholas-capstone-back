@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const habitSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId, // Links the budget entry to a specific user
+      ref: "User", // Refers to the User model
+      required: false,
+    },
     // Name of the habit
     name: {
       type: String,

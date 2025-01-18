@@ -2,6 +2,11 @@ import mongoose from "mongoose";
 
 const ResetSchema = new mongoose.Schema(
   {
+    user: {
+      type: mongoose.Schema.Types.ObjectId, // Links the budget entry to a specific user
+      ref: "User", // Refers to the User model
+      required: false,
+    },
     title: {
       type: String,
       required: true,
