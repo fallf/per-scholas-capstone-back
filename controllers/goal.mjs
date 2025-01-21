@@ -38,5 +38,33 @@ const getEntries = async (req, res) => {
     res.send(err).status(400);
   }
 };
+const createGoal = async (req, res) => {
+  try {
+    const newGoal = await Goal.create(req.body);
+    res.status(201).json(newGoal);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
 
-export default { seed, getEntries };
+const updateGoal = async (req, res) => {
+  try {
+    const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+    });
+    res.status(200).json(updatedGoal);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+const deleteGoal = async (req, res) => {
+  try {
+    await Goal.findByIdAndDelete(req.params.id);
+    res.status(204).send();
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+export default { seed, getEntries, createGoal, updateGoal, deleteGoal };

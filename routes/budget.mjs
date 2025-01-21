@@ -18,5 +18,6 @@ router.get("/", budgetController.getEntries);
 // TODO: be able to use the remain to use as saving, spending for fun
 // TODO: edit
 // TODO: delete
+//TODO: add to be able user authorization before doing crud by using the middleware protection
 
 export default router;

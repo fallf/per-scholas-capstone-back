@@ -1,5 +1,7 @@
 import Habit from "../models/habit.mjs";
 
+//TODO: add to be able user authorization before doing crud
+
 async function seed(req, res) {
   const TODAY = new Date();
   try {
@@ -197,6 +199,7 @@ const createHabit = async (req, res) => {
     res.status(500).json({ message: "Error creating habit" });
   }
 };
+
 const updateHabit = async (req, res) => {
   try {
     const updatedHabit = await Habit.findByIdAndUpdate(
@@ -219,3 +222,5 @@ const deleteHabit = async (req, res) => {
 };
 
 export default { seed, getEntries, createHabit, updateHabit, deleteHabit };
+
+//TODO: add to be able user authorization before doing crud

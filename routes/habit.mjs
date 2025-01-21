@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router();
 
+//TODO: add to be able user authorization before doing crud by using the middleware protection
+
 import habitController from "../controllers/habit.mjs"; // Ensure proper import
 
 // Seed data route

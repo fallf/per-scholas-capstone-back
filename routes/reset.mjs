@@ -12,5 +12,6 @@ router.get("/", resetContoller.getEntries);
 // TODO: get based on criteria
 // TODO: edit goal
 // TODO: delete goal
+//TODO: add to be able user authorization before doing crud by using the middleware protection
 
 export default router;
