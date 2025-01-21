@@ -2,27 +2,25 @@ import mongoose from "mongoose";
 
 const ResetSchema = new mongoose.Schema(
   {
-    user: {
-      type: mongoose.Schema.Types.ObjectId, // Links the budget entry to a specific user
-      ref: "User", // Refers to the User model
-      required: false,
-    },
     title: {
       type: String,
       required: true,
-      trim: true, // Removes unnecessary whitespace
+      trim: true,
     },
     category: {
       type: String,
-      enum: ["reflection", "motivation", "planning", "progress"], // Predefined categories
+      enum: ["reflection", "motivation", "planning", "progress"],
       required: true,
       trim: true,
     },
-
     reflectionPrompt: {
-      type: String, // A single string prompt
-      required: false, // Optional field
+      type: String,
+      required: false,
       trim: true,
+    },
+    reflectionMonth: {
+      type: String,
+      required: true,
     },
   },
   { timestamps: true }

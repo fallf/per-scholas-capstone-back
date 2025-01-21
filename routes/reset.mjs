@@ -1,17 +1,13 @@
 import express from "express";
 const router = express.Router();
 
-import resetContoller from "../controllers/reset.mjs";
+import resetController from "../controllers/reset.mjs";
 
-router.get("/seed", resetContoller.seed);
+router.get("/seed", resetController.seed);
 
-router.get("/", resetContoller.getEntries);
-
-// TODO: POST new goal
-// TODO: get indivifual goal
-// TODO: get based on criteria
-// TODO: edit goal
-// TODO: delete goal
-//TODO: add to be able user authorization before doing crud by using the middleware protection
+router.get("/", resetController.getEntries);
+router.put("/:id", resetController.editEntry); // Edit an entry
+router.delete("/:id", resetController.deleteEntry); // Delete an entry
+router.post("/", resetController.createReflection); //create
 
 export default router;
