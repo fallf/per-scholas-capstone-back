@@ -72,20 +72,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const getMe = asyncHandler(async (req, res) => {
-  const user = await User.findById(req.user.id);
-
-  if (!user) {
-    res.status(404);
-    throw new Error("User not found");
-  }
-
-  const { _id, name, email } = user;
-
-  res.status(200).json({
-    id: _id,
-    name,
-    email,
-  });
+  res.json({ message: "User data display" });
 });
 
 // gererate JWT token

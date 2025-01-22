@@ -5,7 +5,7 @@ const goalSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.Types.ObjectId, // Links the budget entry to a specific user
       ref: "User", // Refers to the User model
-      required: false,
+      required: true,
     },
     title: {
       type: String,
