@@ -40,9 +40,11 @@ const getEntries = async (req, res) => {
 };
 const createGoal = async (req, res) => {
   try {
+    console.log("Received body:", req.body);
     const newGoal = await Goal.create(req.body);
     res.status(201).json(newGoal);
   } catch (err) {
+    console.error("Error creating goal:", err);
     res.status(400).send(err);
   }
 };
